@@ -488,11 +488,14 @@
     @media (max-width: 900px) {
       .nav-links, .nav-wiredaholm { display: none; }
       .hamburger { display: flex; }
-      .hero-content { grid-template-columns: 1fr; gap: 48px; }
+      .hero        { min-height: auto; }
+      .hero-content { grid-template-columns: 1fr; gap: 48px; padding-block: 64px 48px; }
       .hero-visual  { display: none; }
       .about-grid   { grid-template-columns: 1fr; gap: 40px; }
       .trail-steps  { grid-template-columns: 1fr; gap: 8px; }
       .trail-info-grid { grid-template-columns: 1fr; }
+      .trail-map-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .trail-map-grid > a { order: -1; }
       .stats-grid   { grid-template-columns: 1fr; }
       .stat         { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
       .stat:last-child { border-bottom: none; }
@@ -504,6 +507,9 @@
       .section { padding-block: 64px; }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
+      .hero-cta { flex-direction: column; }
+      .hero-cta .btn { width: 100%; justify-content: center; }
+      .scroll-indicator { display: none; }
     }
   </style>
 </head>
@@ -688,7 +694,7 @@
     </div>
 
     <!-- Teaser-grid med SVG-förhandsvisning av kartan -->
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; margin-bottom:48px;" class="reveal">
+    <div class="trail-map-grid reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; margin-bottom:48px;">
       <!-- Karta-förhandsvisning -->
       <a href="promenad.html" style="display:block; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-lg); transition:transform .3s ease, box-shadow .3s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 28px 72px rgba(27,67,50,.22)'" onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow-lg)'">
         <img src="karta.svg" alt="Karta över promenadslingan runt Viredaholmssjön med 8 stopp" style="width:100%; height:auto; display:block;" loading="lazy" />
@@ -724,13 +730,6 @@
         </a>
       </div>
     </div>
-
-    <!-- Responsiv fix för kartan + info på mobil -->
-    <style>
-      @media (max-width: 860px) {
-        #promenadslingan .trail-teaser-grid { grid-template-columns: 1fr !important; }
-      }
-    </style>
 
     <div style="background:var(--green-100); border-radius:var(--radius-md); padding:20px 24px; display:flex; gap:14px; align-items:center;" class="reveal">
       <span style="font-size:1.4rem;">📍</span>

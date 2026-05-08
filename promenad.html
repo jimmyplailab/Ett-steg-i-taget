@@ -372,6 +372,9 @@
       .stops-grid { grid-template-columns: 1fr 1fr; }
       .hero-stats { gap: 20px; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
+      .hero-cta { flex-direction: column; }
+      .hero-cta .btn { width: 100%; justify-content: center; }
+      .map-frame-wrap iframe { height: 480px; }
     }
   </style>
 </head>
@@ -490,7 +493,12 @@
             /* Säkerställ att detail-panelen (stopp-info) alltid syns inom ramen */
             '.detail { top: 12px !important; bottom: 64px !important; overflow-y: auto !important; }',
             /* Mjukare scrollning i panelen */
-            '.detail * { -webkit-overflow-scrolling: touch; }'
+            '.detail * { -webkit-overflow-scrolling: touch; }',
+            /* ── Mobil: detail som bottom sheet, bottombar uppe ── */
+            '@media (max-width: 540px) {',
+            '  .bottombar { top: 10px !important; bottom: auto !important; left: 50% !important; transform: translateX(-50%) !important; }',
+            '  .detail { left: 0 !important; right: 0 !important; width: 100% !important; top: auto !important; bottom: 0 !important; max-height: 52% !important; border-radius: 16px 16px 0 0 !important; box-shadow: 0 -6px 28px rgba(0,0,0,.18) !important; border-top: 1px solid rgba(0,0,0,.07) !important; }',
+            '}'
           ].join(' ');
           doc.head.appendChild(style);
         })(this)"
