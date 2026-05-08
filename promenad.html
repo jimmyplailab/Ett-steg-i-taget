@@ -356,6 +356,72 @@
     }
     .footer-crisis strong { color: rgba(255,255,255,.75); }
 
+    /* ─── Fullskärms-overlay (karta) ────────────────── */
+    .map-fullscreen {
+      display: none; position: fixed; inset: 0; z-index: 300;
+      flex-direction: column; background: #f4efe3;
+    }
+    .map-fullscreen.open { display: flex; }
+    .map-fullscreen-bar {
+      height: 52px; background: #fff;
+      border-bottom: 1px solid #e8ede9;
+      display: flex; align-items: center;
+      padding: 0 16px; gap: 12px; flex-shrink: 0;
+      box-shadow: 0 1px 6px rgba(0,0,0,.07);
+    }
+    .map-fullscreen-back {
+      display: flex; align-items: center; gap: 6px;
+      background: none; border: none; cursor: pointer;
+      font-size: .875rem; font-weight: 600; color: var(--green-700);
+      padding: 8px 12px 8px 0;
+    }
+    .map-fullscreen-back svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .map-fullscreen-title {
+      font-size: .82rem; font-weight: 500; color: var(--gray-600);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .map-fullscreen-body { flex: 1; overflow: hidden; position: relative; }
+    .map-fullscreen-body iframe { width: 100%; height: 100%; border: none; display: block; }
+    .map-loading {
+      position: absolute; inset: 0; display: flex;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 16px; background: #f4efe3; color: var(--gray-400); font-size: .875rem;
+    }
+    .map-loading-spinner {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 3px solid var(--green-100); border-top-color: var(--green-500);
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── Mobil kartförhandsvisning ──────────────────── */
+    .map-mobile-preview {
+      display: none; border-radius: var(--radius-lg);
+      overflow: hidden; box-shadow: var(--shadow-lg);
+      background: #f4efe3; cursor: pointer; position: relative;
+    }
+    .map-mobile-preview img { width: 100%; display: block; }
+    .map-preview-overlay {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 12px;
+      background: rgba(27,67,50,.15);
+    }
+    .map-open-btn {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--green-900); color: #fff;
+      border: none; border-radius: 100px;
+      padding: 15px 28px; font-size: 1rem; font-weight: 600;
+      cursor: pointer; box-shadow: 0 6px 24px rgba(0,0,0,.35);
+      transition: transform .15s ease;
+    }
+    .map-open-btn:active { transform: scale(.96); }
+    .map-open-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .map-preview-hint {
+      font-size: .78rem; color: rgba(255,255,255,.85);
+      font-weight: 500; letter-spacing: .03em;
+    }
+
     /* ─── Responsive ─────────────────────────────────── */
     @media (max-width: 900px) {
       .nav-right .nav-back, .nav-right .nav-wiredaholm { display: none; }
@@ -367,6 +433,10 @@
       .info-grid { grid-template-columns: 1fr; }
       .map-frame-wrap iframe { height: 560px; }
     }
+    @media (max-width: 768px) {
+      .map-frame-wrap { display: none; }
+      .map-mobile-preview { display: block; }
+    }
     @media (max-width: 600px) {
       .section { padding-block: 60px; }
       .stops-grid { grid-template-columns: 1fr 1fr; }
@@ -374,7 +444,6 @@
       .footer-inner { flex-direction: column; align-items: flex-start; }
       .hero-cta { flex-direction: column; }
       .hero-cta .btn { width: 100%; justify-content: center; }
-      .map-frame-wrap iframe { height: 480px; }
     }
   </style>
 </head>
@@ -476,33 +545,27 @@
       <p>Klicka på skyltarna längs slingan för att läsa mer om varje organisation och vad de gör.</p>
     </div>
 
+    <!-- Desktop: inbäddad karta -->
     <div class="map-frame-wrap reveal">
       <iframe
         id="map-iframe"
         src="Promenadslinga _standalone_.html"
         title="Interaktiv karta över promenadslingan vid Wiredaholm"
         sandbox="allow-scripts allow-same-origin"
-        onload="(function(fr){
-          var doc = fr.contentDocument;
-          var style = doc.createElement('style');
-          style.textContent = [
-            /* Dölj kartans egna titelkort – sidan har egna rubriker */
-            '.topbar { display: none !important; }',
-            /* Ge bottombar lite mer luft nedtill */
-            '.bottombar { bottom: 12px !important; }',
-            /* Säkerställ att detail-panelen (stopp-info) alltid syns inom ramen */
-            '.detail { top: 12px !important; bottom: 64px !important; overflow-y: auto !important; }',
-            /* Mjukare scrollning i panelen */
-            '.detail * { -webkit-overflow-scrolling: touch; }',
-            /* ── Mobil: detail som bottom sheet, bottombar uppe ── */
-            '@media (max-width: 540px) {',
-            '  .bottombar { top: 10px !important; bottom: auto !important; left: 50% !important; transform: translateX(-50%) !important; }',
-            '  .detail { left: 0 !important; right: 0 !important; width: 100% !important; top: auto !important; bottom: 0 !important; max-height: 52% !important; border-radius: 16px 16px 0 0 !important; box-shadow: 0 -6px 28px rgba(0,0,0,.18) !important; border-top: 1px solid rgba(0,0,0,.07) !important; }',
-            '}'
-          ].join(' ');
-          doc.head.appendChild(style);
-        })(this)"
+        onload="injectMapStyles(this)"
       ></iframe>
+    </div>
+
+    <!-- Mobil: förhandsvisning som öppnar helskärm -->
+    <div class="map-mobile-preview reveal" onclick="openMapFullscreen()" role="button" tabindex="0" aria-label="Öppna kartan i helskärm">
+      <img src="karta.svg" alt="Förhandsvisning av promenadslingan runt Viredaholmssjön" />
+      <div class="map-preview-overlay">
+        <button class="map-open-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h6M3 3v6M21 3h-6M21 3v6M3 21h6M3 21v-6M21 21h-6M21 21v-6"/></svg>
+          Öppna kartan i helskärm
+        </button>
+        <span class="map-preview-hint">Tryck för att utforska slingan interaktivt</span>
+      </div>
     </div>
 
     <div class="map-legend">
@@ -700,6 +763,24 @@
 </footer>
 
 
+<!-- ═══════════ HELSKÄRMS-KARTOVERLAY ═══════════ -->
+<div class="map-fullscreen" id="mapFullscreen" aria-modal="true" role="dialog" aria-label="Interaktiv karta">
+  <div class="map-fullscreen-bar">
+    <button class="map-fullscreen-back" onclick="closeMapFullscreen()" aria-label="Stäng karta">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Stäng
+    </button>
+    <span class="map-fullscreen-title">Promenadslingan vid Wiredaholm</span>
+  </div>
+  <div class="map-fullscreen-body" id="mapFullscreenBody">
+    <div class="map-loading" id="mapLoading">
+      <div class="map-loading-spinner"></div>
+      <span>Laddar kartan…</span>
+    </div>
+  </div>
+</div>
+
+
 <script>
   const nav = document.getElementById('navbar');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
@@ -713,6 +794,64 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── CSS-injektion i kart-iframe ── */
+  function injectMapStyles(iframe) {
+    var doc = iframe.contentDocument;
+    var style = doc.createElement('style');
+    style.textContent = [
+      '.topbar { display: none !important; }',
+      '.bottombar { bottom: 12px !important; }',
+      '.detail { top: 12px !important; bottom: 64px !important; overflow-y: auto !important; }',
+      '.detail * { -webkit-overflow-scrolling: touch; }',
+      '@media (max-width: 600px) {',
+      '  .bottombar { top: 10px !important; bottom: auto !important; left: 50% !important; transform: translateX(-50%) !important; }',
+      '  .detail { left: 0 !important; right: 0 !important; width: 100% !important; top: auto !important; bottom: 0 !important; max-height: 52% !important; border-radius: 16px 16px 0 0 !important; box-shadow: 0 -6px 28px rgba(0,0,0,.18) !important; border-top: 1px solid rgba(0,0,0,.07) !important; }',
+      '}'
+    ].join(' ');
+    doc.head.appendChild(style);
+  }
+
+  /* ── Helskärms-overlay ── */
+  function openMapFullscreen() {
+    var overlay = document.getElementById('mapFullscreen');
+    var body    = document.getElementById('mapFullscreenBody');
+    overlay.classList.add('open');
+    document.documentElement.style.overflow = 'hidden';
+
+    if (!body.querySelector('iframe')) {
+      var iframe = document.createElement('iframe');
+      iframe.title   = 'Interaktiv karta över promenadslingan vid Wiredaholm';
+      iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
+      iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
+      iframe.onload = function() {
+        document.getElementById('mapLoading').style.display = 'none';
+        injectMapStyles(iframe);
+      };
+      body.appendChild(iframe);
+      iframe.src = 'Promenadslinga _standalone_.html';
+    } else {
+      document.getElementById('mapLoading').style.display = 'none';
+    }
+  }
+
+  function closeMapFullscreen() {
+    document.getElementById('mapFullscreen').classList.remove('open');
+    document.documentElement.style.overflow = '';
+  }
+
+  /* Stäng med Escape-tangent */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeMapFullscreen();
+  });
+
+  /* Stöd touch på förhandsvisningskortet */
+  var preview = document.querySelector('.map-mobile-preview');
+  if (preview) {
+    preview.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openMapFullscreen(); }
+    });
+  }
 </script>
 </body>
 </html>
