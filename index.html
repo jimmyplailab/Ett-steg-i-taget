@@ -355,10 +355,13 @@
       height: 4px; background: linear-gradient(90deg, var(--green-500), var(--green-300));
     }
     .org-logo {
-      width: 52px; height: 52px; border-radius: 14px;
-      background: var(--green-50); display: flex;
-      align-items: center; justify-content: center;
-      font-size: 1.5rem; margin-bottom: 20px;
+      height: 44px; margin-bottom: 20px;
+      display: flex; align-items: center;
+    }
+    .org-logo img {
+      max-height: 40px; max-width: 160px;
+      width: auto; height: auto; object-fit: contain;
+      display: block;
     }
     .org-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; font-family: 'Inter', sans-serif; }
     .org-card p  { font-size: .84rem; max-width: none; margin-bottom: 20px; }
@@ -432,13 +435,17 @@
       aspect-ratio: 2/1; border-radius: var(--radius-md);
       border: 1.5px solid #E8EDE9;
       display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 10px;
+      align-items: center; justify-content: center; gap: 8px;
       padding: 20px; transition: var(--transition);
-      background: var(--white);
+      background: var(--white); text-decoration: none;
     }
-    .sponsor-card:hover { border-color: var(--green-300); box-shadow: var(--shadow-md); }
-    .sponsor-card .sp-icon { font-size: 1.6rem; }
-    .sponsor-card .sp-name { font-size: .78rem; font-weight: 600; color: var(--gray-400); text-align: center; }
+    .sponsor-card:hover { border-color: var(--green-300); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .sponsor-card img {
+      max-width: 80%; max-height: 48px;
+      width: auto; height: auto; object-fit: contain;
+      transition: filter var(--transition);
+    }
+    .sponsor-card .sp-name { font-size: .72rem; font-weight: 600; color: var(--gray-400); text-align: center; }
     .sponsor-cta { text-align: center; }
     .sponsor-cta p { font-size: .9rem; margin: 0 auto 20px; }
 
@@ -756,7 +763,7 @@
 
     <div class="orgs-grid">
       <div class="card org-card reveal">
-        <div class="org-logo">💛</div>
+        <div class="org-logo"><img src="logos/org-mammatillmamma.svg" alt="Mamma till Mamma logotyp" /></div>
         <span class="tag">Stöd för mammor</span>
         <h3 style="margin-top:12px;">Mamma till Mamma</h3>
         <p>Stödnätverk för mammor med psykisk ohälsa – av mammor som själva har varit där.</p>
@@ -766,7 +773,7 @@
       </div>
 
       <div class="card org-card reveal reveal-delay-1">
-        <div class="org-logo">🌱</div>
+        <div class="org-logo"><img src="logos/org-spes.jpg" alt="SPES logotyp" /></div>
         <span class="tag">Självmordsförebyggande</span>
         <h3 style="margin-top:12px;">SPES</h3>
         <p>Suicide Prevention och Efterlevandes Stöd – stöd till efterlevande och arbete för att förebygga självmord.</p>
@@ -776,7 +783,7 @@
       </div>
 
       <div class="card org-card reveal reveal-delay-2">
-        <div class="org-logo">🤝</div>
+        <div class="org-logo"><img src="logos/org-roks.png" alt="Roks logotyp" /></div>
         <span class="tag">Krishjälp & skydd</span>
         <h3 style="margin-top:12px;">Roks</h3>
         <p>Riksorganisationen för kvinnojourer och tjejjourer – stöd till våldsutsatta kvinnor och barn.</p>
@@ -786,7 +793,7 @@
       </div>
 
       <div class="card org-card reveal">
-        <div class="org-logo">🌿</div>
+        <div class="org-logo"><img src="logos/org-tilia.svg" alt="Tilia logotyp" /></div>
         <span class="tag">Psykoterapi</span>
         <h3 style="margin-top:12px;">Tilia</h3>
         <p>Specialistklinik som erbjuder psykoterapi och stöd vid komplexa psykiska besvär.</p>
@@ -796,7 +803,7 @@
       </div>
 
       <div class="card org-card reveal reveal-delay-1">
-        <div class="org-logo">💬</div>
+        <div class="org-logo"><img src="logos/org-aldrigensam.jpg" alt="Aldrig Ensam logotyp" /></div>
         <span class="tag">Ensamhet</span>
         <h3 style="margin-top:12px;">Aldrig Ensam</h3>
         <p>Arbetar för att bryta ensamhet och isolering – för alla som känner att de saknar någon att prata med.</p>
@@ -806,7 +813,7 @@
       </div>
 
       <div class="card org-card reveal reveal-delay-2">
-        <div class="org-logo">🔄</div>
+        <div class="org-logo"><img src="logos/org-rise.svg" alt="Rise logotyp" /></div>
         <span class="tag">Beroende & återhämtning</span>
         <h3 style="margin-top:12px;">Rise</h3>
         <p>Stöd och resurser för den som vill ta sig ur missbruk och beroende – med fokus på egenmakt och hopp.</p>
@@ -816,7 +823,7 @@
       </div>
 
       <div class="card org-card reveal">
-        <div class="org-logo">⚖️</div>
+        <div class="org-logo"><img src="logos/org-balans.jpg" alt="Riksförbundet Balans logotyp" /></div>
         <span class="tag">Depression & ångest</span>
         <h3 style="margin-top:12px;">Riksförbundet Balans</h3>
         <p>Riksförbund för personer med depression, ångest och bipolär sjukdom – och deras anhöriga.</p>
@@ -826,7 +833,7 @@
       </div>
 
       <div class="card org-card reveal reveal-delay-1">
-        <div class="org-logo">🏠</div>
+        <div class="org-logo"><img src="logos/org-randiga.svg" alt="Randiga Huset logotyp" /></div>
         <span class="tag">Barn & familj</span>
         <h3 style="margin-top:12px;">Randiga Huset</h3>
         <p>Stöd till barn och unga som lever med en förälder med psykisk ohälsa, missbruk eller annan svår situation.</p>
@@ -836,7 +843,7 @@
       </div>
 
       <div class="card org-card reveal reveal-delay-2">
-        <div class="org-logo">🌻</div>
+        <div class="org-logo"><img src="logos/org-maskrosbarn.svg" alt="Maskrosbarn logotyp" /></div>
         <span class="tag">Barn & familj</span>
         <h3 style="margin-top:12px;">Maskrosbarn</h3>
         <p>Stärker barn och unga som växer upp med föräldrar med missbruk eller psykisk sjukdom.</p>
@@ -846,7 +853,7 @@
       </div>
 
       <div class="card org-card reveal">
-        <div class="org-logo">🧠</div>
+        <div class="org-logo"><img src="logos/org-hjarnkoll.svg" alt="Hjärnkoll Jönköping logotyp" /></div>
         <span class="tag">Utbildning</span>
         <h3 style="margin-top:12px;">Hjärnkoll Jönköping</h3>
         <p>Lokalt arbete för att minska fördomar och öka öppenheten kring psykisk ohälsa i Jönköping.</p>
@@ -856,7 +863,7 @@
       </div>
 
       <div class="card org-card reveal reveal-delay-1">
-        <div class="org-logo">🔗</div>
+        <div class="org-logo"><img src="logos/org-nsph.png" alt="NSPH Jönköping logotyp" /></div>
         <span class="tag">Samverkan</span>
         <h3 style="margin-top:12px;">NSPH Jönköping</h3>
         <p>Nationell Samverkan för Psykisk Hälsa – en paraplyorganisation för brukarrörelsen i Jönköping.</p>
@@ -866,7 +873,7 @@
       </div>
 
       <div class="card org-card reveal reveal-delay-2">
-        <div class="org-logo">🎙️</div>
+        <div class="org-logo"><img src="logos/org-snacka.svg" alt="Snacka om sjukt logotyp" /></div>
         <span class="tag">Unga & samtal</span>
         <h3 style="margin-top:12px;">Snacka om sjukt</h3>
         <p>Öppnar upp samtalet om psykisk ohälsa för unga – på ett ärligt, icke-dömande och inkluderande sätt.</p>
@@ -952,27 +959,22 @@
 
     <div class="sponsors-grid">
       <a href="https://wiredaholm.se/" target="_blank" rel="noopener" class="sponsor-card reveal">
-        <span class="sp-icon">⛳</span>
-        <span class="sp-name">Wiredaholm Golf<br>&amp; Konferens</span>
+        <img src="logos/sponsor-wiredaholm.png" alt="Wiredaholm Golf & Konferens" />
       </a>
-      <a href="https://www.tmgolf.se/" target="_blank" rel="noopener" class="sponsor-card reveal reveal-delay-1">
-        <span class="sp-icon">🏌️</span>
-        <span class="sp-name">TM Golf</span>
+      <a href="https://www.tmgolf.se/" target="_blank" rel="noopener" class="sponsor-card reveal reveal-delay-1" style="background:#1b3a2f;">
+        <img src="logos/sponsor-tmgolf.png" alt="TM Golf" />
       </a>
       <a href="https://norellmobel.se/" target="_blank" rel="noopener" class="sponsor-card reveal reveal-delay-2">
-        <span class="sp-icon">🪑</span>
-        <span class="sp-name">Norell Möbel</span>
+        <img src="logos/sponsor-norell.png" alt="Norell Möbel" />
       </a>
       <a href="https://jemab.se/" target="_blank" rel="noopener" class="sponsor-card reveal reveal-delay-3">
-        <span class="sp-icon">🏗️</span>
-        <span class="sp-name">Jemab</span>
+        <img src="logos/sponsor-jemab.svg" alt="Jemab" />
       </a>
       <a href="https://www.hillerstorp.se/" target="_blank" rel="noopener" class="sponsor-card reveal">
-        <span class="sp-icon">🌲</span>
-        <span class="sp-name">Hillerstorp</span>
+        <img src="logos/sponsor-hillerstorp.png" alt="Hillerstorp" />
       </a>
       <a href="https://www.plailab.com/" target="_blank" rel="noopener" class="sponsor-card reveal reveal-delay-1">
-        <span class="sp-icon">💻</span>
+        <img src="logos/sponsor-plailab.svg" alt="Plailab" />
         <span class="sp-name">Plailab</span>
       </a>
       <div class="sponsor-card reveal reveal-delay-2" style="border: 1.5px dashed var(--green-300); background:var(--green-50); cursor:default;">
