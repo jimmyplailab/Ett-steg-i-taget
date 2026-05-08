@@ -123,14 +123,16 @@
       height: 68px;
     }
     .nav-logo {
-      display: flex; flex-direction: column; gap: 1px;
+      display: flex; align-items: center; gap: 10px;
     }
+    .nav-logo img { height: 38px; width: auto; }
+    .nav-logo-text { display: flex; flex-direction: column; gap: 1px; }
     .nav-logo-name {
-      font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 400;
+      font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 400;
       color: var(--green-900); line-height: 1;
     }
     .nav-logo-tagline {
-      font-size: .65rem; color: var(--green-500); letter-spacing: .06em;
+      font-size: .62rem; color: var(--green-500); letter-spacing: .06em;
       text-transform: uppercase; font-weight: 500;
     }
     .nav-links {
@@ -512,8 +514,8 @@
   <div class="container">
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <img src="Logga-Ett Steg I Taget.png" alt="Ett Steg i Taget logotyp" style="height:36px;width:auto;" />
-        <div style="display:flex;flex-direction:column;gap:1px;">
+        <img src="Logga-Ett Steg I Taget.png" alt="Ett Steg i Taget logotyp" />
+        <div class="nav-logo-text">
           <span class="nav-logo-name">Ett Steg i Taget</span>
           <span class="nav-logo-tagline">Ideell förening</span>
         </div>
@@ -563,7 +565,7 @@
         <h1>Varje resa börjar med <em>ett steg i taget</em></h1>
         <p>Psykisk ohälsa drabbar var tredje svensk – ändå pratar vi för lite om det. Vi finns för att ändra på det, ett samtal i taget.</p>
         <div class="hero-cta">
-          <a href="#om-oss" class="btn btn-primary">Läs om föreningen</a>
+          <a href="#aktiviteter" class="btn btn-primary">Våra kommande aktiviteter</a>
           <a href="#promenadslingan" class="btn btn-outline">Se promenadslingan</a>
         </div>
       </div>
@@ -688,29 +690,9 @@
     <!-- Teaser-grid med SVG-förhandsvisning av kartan -->
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; margin-bottom:48px;" class="reveal">
       <!-- Karta-förhandsvisning -->
-      <div style="border-radius:var(--radius-lg); overflow:hidden; background:#f4efe3; box-shadow:var(--shadow-lg); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center;">
-        <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-          <rect width="1200" height="800" fill="#f4efe3"/>
-          <!-- Sjön -->
-          <path d="M 460 200 C 380 200, 320 240, 300 290 C 280 340, 290 380, 300 420 C 312 470, 340 520, 400 555 C 460 590, 540 600, 620 595 C 700 590, 770 580, 830 540 C 880 510, 905 470, 905 420 C 905 370, 880 320, 840 290 C 800 260, 740 240, 680 232 C 620 224, 560 218, 510 212 C 490 208, 475 204, 460 200 Z" fill="#b9d8df" stroke="#6f9fa9" stroke-width="2"/>
-          <text x="580" y="410" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#4a7a8a" font-style="italic">Viredaholmssjön</text>
-          <!-- Slingan -->
-          <path d="M 200 640 C 175 575, 165 520, 175 405 C 200 320, 280 195, 565 130 C 870 165, 1010 400, 920 640 C 555 705, 200 640 Z" fill="none" stroke="#2D6A4F" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round"/>
-          <!-- Skyltar -->
-          <g fill="#d96a4a" stroke="#1f2a24" stroke-width="2">
-            <circle cx="200" cy="640" r="14"/><circle cx="175" cy="405" r="14"/>
-            <circle cx="280" cy="195" r="14"/><circle cx="565" cy="130" r="14"/>
-            <circle cx="870" cy="165" r="14"/><circle cx="1010" cy="400" r="14"/>
-            <circle cx="920" cy="640" r="14"/><circle cx="555" cy="705" r="14"/>
-          </g>
-          <g font-family="Georgia,serif" font-size="16" fill="#1B4332" text-anchor="middle">
-            <text x="200" y="636" fill="#fff" font-size="13">1</text><text x="175" y="401" fill="#fff" font-size="13">2</text>
-            <text x="280" y="191" fill="#fff" font-size="13">3</text><text x="565" y="126" fill="#fff" font-size="13">4</text>
-            <text x="870" y="161" fill="#fff" font-size="13">5</text><text x="1010" y="396" fill="#fff" font-size="13">6</text>
-            <text x="920" y="636" fill="#fff" font-size="13">7</text><text x="555" y="701" fill="#fff" font-size="13">8</text>
-          </g>
-        </svg>
-      </div>
+      <a href="promenad.html" style="display:block; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-lg); transition:transform .3s ease, box-shadow .3s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 28px 72px rgba(27,67,50,.22)'" onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow-lg)'">
+        <img src="karta.svg" alt="Karta över promenadslingan runt Viredaholmssjön med 8 stopp" style="width:100%; height:auto; display:block;" loading="lazy" />
+      </a>
 
       <!-- Info -->
       <div>

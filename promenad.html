@@ -245,7 +245,7 @@
       background: #f4efe3;
     }
     .map-frame-wrap iframe {
-      width: 100%; height: 680px; border: none; display: block;
+      width: 100%; height: 780px; border: none; display: block;
     }
     .map-legend {
       margin-top: 28px;
@@ -365,7 +365,7 @@
       .why-grid { grid-template-columns: 1fr; gap: 40px; }
       .stops-grid { grid-template-columns: repeat(2, 1fr); }
       .info-grid { grid-template-columns: 1fr; }
-      .map-frame-wrap iframe { height: 480px; }
+      .map-frame-wrap iframe { height: 560px; }
     }
     @media (max-width: 600px) {
       .section { padding-block: 60px; }
@@ -475,10 +475,25 @@
 
     <div class="map-frame-wrap reveal">
       <iframe
+        id="map-iframe"
         src="Promenadslinga _standalone_.html"
         title="Interaktiv karta över promenadslingan vid Wiredaholm"
-        loading="lazy"
         sandbox="allow-scripts allow-same-origin"
+        onload="(function(fr){
+          var doc = fr.contentDocument;
+          var style = doc.createElement('style');
+          style.textContent = [
+            /* Dölj kartans egna titelkort – sidan har egna rubriker */
+            '.topbar { display: none !important; }',
+            /* Ge bottombar lite mer luft nedtill */
+            '.bottombar { bottom: 12px !important; }',
+            /* Säkerställ att detail-panelen (stopp-info) alltid syns inom ramen */
+            '.detail { top: 12px !important; bottom: 64px !important; overflow-y: auto !important; }',
+            /* Mjukare scrollning i panelen */
+            '.detail * { -webkit-overflow-scrolling: touch; }'
+          ].join(' ');
+          doc.head.appendChild(style);
+        })(this)"
       ></iframe>
     </div>
 
