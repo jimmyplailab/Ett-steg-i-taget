@@ -275,6 +275,52 @@
       50% { transform: translateX(-50%) translateY(6px); }
     }
 
+    /* ─── Sponsor marquee ──────────────────────────────────── */
+    .sponsor-marquee {
+      overflow: hidden;
+      padding-block: 22px;
+      background: var(--white);
+      border-bottom: 1px solid #E8EDE9;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+    .sponsor-marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 72px;
+      width: max-content;
+      animation: marquee-scroll 22s linear infinite;
+    }
+    .sponsor-marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .sponsor-marquee-item {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .sponsor-marquee-item img {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(1);
+      opacity: 0.55;
+      transition: filter .3s ease, opacity .3s ease;
+    }
+    .sponsor-marquee-item img:hover {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+    .sponsor-marquee-item img.invert {
+      filter: invert(1) grayscale(1);
+    }
+    .sponsor-marquee-item img.invert:hover {
+      filter: invert(1) grayscale(0);
+      opacity: 1;
+    }
+
     /* ─── Stats bar ─────────────────────────────────────── */
     .stats-bar {
       background: var(--green-900); color: var(--white);
@@ -646,6 +692,50 @@
     </div>
   </div>
 </section>
+
+<!-- ═══════════════ SPONSOR MARQUEE ═══════════════ -->
+<div class="sponsor-marquee" aria-hidden="true">
+  <div class="sponsor-marquee-track">
+    <!-- Set 1 -->
+    <a href="https://wiredaholm.se/" target="_blank" rel="noopener" class="sponsor-marquee-item">
+      <img src="logos/sponsor-wiredaholm.png" alt="Wiredaholm Golf &amp; Konferens" />
+    </a>
+    <a href="https://www.tmgolf.se/" target="_blank" rel="noopener" class="sponsor-marquee-item">
+      <img src="logos/sponsor-tmgolf.png" alt="TM Golf" class="invert" />
+    </a>
+    <a href="https://norellmobel.se/" target="_blank" rel="noopener" class="sponsor-marquee-item">
+      <img src="logos/sponsor-norell.png" alt="Norell Möbel" />
+    </a>
+    <a href="https://jemab.se/" target="_blank" rel="noopener" class="sponsor-marquee-item">
+      <img src="logos/sponsor-jemab.svg" alt="Jemab" />
+    </a>
+    <a href="https://www.hillerstorp.se/" target="_blank" rel="noopener" class="sponsor-marquee-item">
+      <img src="logos/sponsor-hillerstorp.png" alt="Hillerstorp" />
+    </a>
+    <a href="https://www.plailab.com/" target="_blank" rel="noopener" class="sponsor-marquee-item">
+      <img src="logos/sponsor-plailab.svg" alt="Plailab" />
+    </a>
+    <!-- Set 2 (duplicate for seamless loop) -->
+    <a href="https://wiredaholm.se/" target="_blank" rel="noopener" class="sponsor-marquee-item">
+      <img src="logos/sponsor-wiredaholm.png" alt="" />
+    </a>
+    <a href="https://www.tmgolf.se/" target="_blank" rel="noopener" class="sponsor-marquee-item">
+      <img src="logos/sponsor-tmgolf.png" alt="" class="invert" />
+    </a>
+    <a href="https://norellmobel.se/" target="_blank" rel="noopener" class="sponsor-marquee-item">
+      <img src="logos/sponsor-norell.png" alt="" />
+    </a>
+    <a href="https://jemab.se/" target="_blank" rel="noopener" class="sponsor-marquee-item">
+      <img src="logos/sponsor-jemab.svg" alt="" />
+    </a>
+    <a href="https://www.hillerstorp.se/" target="_blank" rel="noopener" class="sponsor-marquee-item">
+      <img src="logos/sponsor-hillerstorp.png" alt="" />
+    </a>
+    <a href="https://www.plailab.com/" target="_blank" rel="noopener" class="sponsor-marquee-item">
+      <img src="logos/sponsor-plailab.svg" alt="" />
+    </a>
+  </div>
+</div>
 
 
 <!-- ═══════════════ OM OSS ═══════════════ -->
