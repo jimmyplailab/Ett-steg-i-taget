@@ -1,10 +1,43 @@
-<svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet" aria-label="Karta över promenadslingan vid Viredaholmsjön" xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><rect width="1200" height="800" fill="#f4efe3"/><defs><filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="1.4"/></filter><radialGradient id="waterG" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#c8e4ea"/><stop offset="100%" stop-color="#a5cfd8"/></radialGradient></defs><path d="M 926.5 382.6 C 907.9 487.7, 849.1 583.4, 775.5 630.6 C 701.9 677.8, 668.4 600.7, 591.8 597.3 C 515.2 593.9, 497.8 642.1, 427.5 615.1 C 357.2 588.1, 291.7 542.0, 272.1 474.6 C 252.5 407.2, 265.2 377.3, 338.6 308.9 C 412.0 240.5, 491.0 198.2, 605.8 163.9 C 720.6 129.6, 789.6 105.0, 860.2 153.1 C 930.8 201.2, 945.1 277.6, 926.5 382.6 Z" fill="none" stroke="#2b3a32" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"/><path d="M 858.7 387.6 L 852.5 430.3 L 810.8 434.0 L 792.8 461.5 L 791.9 515.8 L 787.6 557.1 L 733.6 577.1 L 704.7 561.8 L 686.9 559.3 L 670.4 548.1 L 630.6 543.0 L 601.0 523.9 L 594.7 529.4 L 577.5 569.6 L 563.1 585.2 L 545.8 597.7 L 519.1 602.6 L 501.9 584.4 L 470.9 562.7 L 444.4 525.1 L 416.2 509.8 L 388.9 511.6 L 368.3 503.0 L 353.3 481.4 L 338.7 460.8 L 341.4 453.6 L 352.5 418.9 L 369.8 371.9 L 384.9 355.8 L 387.7 330.7 L 402.3 332.7 L 449.6 316.7 L 454.4 304.8 L 492.6 288.7 L 553.5 246.7 L 577.9 246.0 L 604.2 231.9 L 609.3 212.4 L 627.8 197.4 L 663.3 203.3 L 714.2 237.5 L 758.3 244.7 L 811.5 200.6 L 832.2 197.4 L 847.6 206.4 L 861.3 211.8 L 843.2 245.3 L 857.4 341.2 Z" fill="url(#waterG)" stroke="#6f9fa9" stroke-width="1.5" filter="url(#rough)"/>
-  <circle cx="926.5" cy="382.6" r="18" fill="#d96a4a" stroke="#1f2a24" stroke-width="2"/>
-  <circle cx="775.5" cy="630.6" r="18" fill="#d96a4a" stroke="#1f2a24" stroke-width="2"/>
-  <circle cx="591.8" cy="597.3" r="18" fill="#d96a4a" stroke="#1f2a24" stroke-width="2"/>
-  <circle cx="427.5" cy="615.1" r="18" fill="#d96a4a" stroke="#1f2a24" stroke-width="2"/>
-  <circle cx="272.1" cy="474.6" r="18" fill="#d96a4a" stroke="#1f2a24" stroke-width="2"/>
-  <circle cx="338.6" cy="308.9" r="18" fill="#d96a4a" stroke="#1f2a24" stroke-width="2"/>
-  <circle cx="605.8" cy="163.9" r="18" fill="#d96a4a" stroke="#1f2a24" stroke-width="2"/>
-  <circle cx="860.2" cy="153.1" r="18" fill="#d96a4a" stroke="#1f2a24" stroke-width="2"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <rect width="1200" height="800" fill="#f4ede0"/>
+
+  <!-- Background hills -->
+  <ellipse cx="180" cy="480" rx="100" ry="28" fill="#d4c9b0" opacity="0.4"/>
+  <ellipse cx="1040" cy="620" rx="115" ry="30" fill="#d4c9b0" opacity="0.4"/>
+  <ellipse cx="1040" cy="140" rx="140" ry="33" fill="#d4c9b0" opacity="0.4"/>
+  <ellipse cx="360" cy="750" rx="130" ry="25" fill="#d4c9b0" opacity="0.35"/>
+
+  <!-- Trail (outer loop) -->
+  <path d="M 870 188 C 855 148, 665 130, 555 140 C 445 150, 268 198, 208 228 C 135 260, 82 348, 90 432 C 98 516, 144 598, 204 638 C 268 680, 415 722, 530 718 C 642 714, 820 658, 872 578 C 924 498, 926 392, 906 304 C 886 216, 876 188, 870 188 Z"
+        fill="none" stroke="#C8A96E" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"
+        stroke-dasharray="18 10"/>
+
+  <!-- Lake (OSM shape) -->
+  <path d="M 858.7 387.6 L 852.5 430.3 L 810.8 434.0 L 792.8 461.5 L 791.9 515.8 L 787.6 557.1 L 733.6 577.1 L 704.7 561.8 L 686.9 559.3 L 670.4 548.1 L 630.6 543.0 L 601.0 523.9 L 594.7 529.4 L 577.5 569.6 L 563.1 585.2 L 545.8 597.7 L 519.1 602.6 L 501.9 584.4 L 470.9 562.7 L 444.4 525.1 L 416.2 509.8 L 388.9 511.6 L 368.3 503.0 L 353.3 481.4 L 338.7 460.8 L 341.4 453.6 L 352.5 418.9 L 369.8 371.9 L 384.9 355.8 L 387.7 330.7 L 402.3 332.7 L 449.6 316.7 L 454.4 304.8 L 492.6 288.7 L 553.5 246.7 L 577.9 246.0 L 604.2 231.9 L 609.3 212.4 L 627.8 197.4 L 663.3 203.3 L 714.2 237.5 L 758.3 244.7 L 811.5 200.6 L 832.2 197.4 L 847.6 206.4 L 861.3 211.8 L 843.2 245.3 L 857.4 341.2 Z"
+        fill="#7eb8d4" fill-opacity="0.55" stroke="#5a9ab8" stroke-width="2"/>
+
+  <!-- Stop markers -->
+  <circle cx="870" cy="188" r="14" fill="#fff" stroke="#2D5A3D" stroke-width="2.5"/>
+  <text x="870" y="193" text-anchor="middle" font-size="13" font-weight="700" fill="#2D5A3D" font-family="Georgia,serif">1</text>
+
+  <circle cx="555" cy="140" r="12" fill="#fff" stroke="#2D5A3D" stroke-width="2"/>
+  <text x="555" y="145" text-anchor="middle" font-size="12" font-weight="700" fill="#2D5A3D" font-family="Georgia,serif">2</text>
+
+  <circle cx="208" cy="228" r="12" fill="#fff" stroke="#2D5A3D" stroke-width="2"/>
+  <text x="208" y="233" text-anchor="middle" font-size="12" font-weight="700" fill="#2D5A3D" font-family="Georgia,serif">3</text>
+
+  <circle cx="90" cy="432" r="12" fill="#fff" stroke="#2D5A3D" stroke-width="2"/>
+  <text x="90" y="437" text-anchor="middle" font-size="12" font-weight="700" fill="#2D5A3D" font-family="Georgia,serif">4</text>
+
+  <circle cx="204" cy="638" r="12" fill="#fff" stroke="#2D5A3D" stroke-width="2"/>
+  <text x="204" y="643" text-anchor="middle" font-size="12" font-weight="700" fill="#2D5A3D" font-family="Georgia,serif">5</text>
+
+  <circle cx="530" cy="718" r="12" fill="#fff" stroke="#2D5A3D" stroke-width="2"/>
+  <text x="530" y="723" text-anchor="middle" font-size="12" font-weight="700" fill="#2D5A3D" font-family="Georgia,serif">6</text>
+
+  <circle cx="872" cy="578" r="12" fill="#fff" stroke="#2D5A3D" stroke-width="2"/>
+  <text x="872" y="583" text-anchor="middle" font-size="12" font-weight="700" fill="#2D5A3D" font-family="Georgia,serif">7</text>
+
+  <circle cx="906" cy="304" r="12" fill="#fff" stroke="#2D5A3D" stroke-width="2"/>
+  <text x="906" y="309" text-anchor="middle" font-size="12" font-weight="700" fill="#2D5A3D" font-family="Georgia,serif">8</text>
 </svg>
