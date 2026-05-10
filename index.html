@@ -206,10 +206,12 @@
       width: 600px; height: 600px; border-radius: 50%;
       background: radial-gradient(circle, var(--green-100) 0%, transparent 70%);
       top: -200px; right: -200px; pointer-events: none;
+      z-index: 0;
     }
     .hero-content {
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
       align-items: center; padding-block: 80px;
+      position: relative; z-index: 1;
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -268,6 +270,7 @@
       display: flex; flex-direction: column; align-items: center; gap: 8px;
       font-size: .72rem; color: var(--gray-400); letter-spacing: .08em; text-transform: uppercase;
       animation: bounce 2s infinite;
+      z-index: 1;
     }
     .scroll-indicator svg { color: var(--green-300); }
     @keyframes bounce {
