@@ -376,6 +376,46 @@
       flex-direction: column; background: #f4efe3;
     }
     .map-fullscreen.open { display: flex; }
+
+    /* ─── Rotationstips (portrait → landscape) ─────── */
+    .rotate-hint {
+      position: absolute; bottom: 16px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(27,67,50,.88); color: #fff;
+      border-radius: 100px; padding: 10px 18px 10px 14px;
+      font-size: .8rem; font-weight: 500;
+      white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(0,0,0,.25);
+      backdrop-filter: blur(8px);
+      transition: opacity .3s ease, transform .3s ease;
+      pointer-events: auto;
+    }
+    .rotate-hint.hidden {
+      opacity: 0; transform: translateX(-50%) translateY(8px);
+      pointer-events: none;
+    }
+    .rotate-hint-icon {
+      font-size: 1.1rem;
+      animation: tilt 1.6s ease-in-out infinite;
+      display: inline-block;
+    }
+    @keyframes tilt {
+      0%, 100% { transform: rotate(0deg); }
+      40%       { transform: rotate(90deg); }
+      60%       { transform: rotate(90deg); }
+    }
+    .rotate-hint-close {
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,.6); padding: 2px 0 2px 6px;
+      font-size: 1rem; line-height: 1;
+      transition: color .2s;
+    }
+    .rotate-hint-close:hover { color: #fff; }
+    /* Only show hint on touch devices in portrait */
+    @media (hover: hover) { .rotate-hint { display: none !important; } }
+    @media (orientation: landscape) { .rotate-hint { display: none !important; } }
     .map-fullscreen-bar {
       height: 52px; background: #fff;
       border-bottom: 1px solid #e8ede9;
@@ -795,6 +835,12 @@
       <div class="map-loading-spinner"></div>
       <span>Laddar kartan…</span>
     </div>
+    <!-- Rotationstips – visas på touch-enheter i stående läge -->
+    <div class="rotate-hint hidden" id="rotateHint" role="status" aria-live="polite">
+      <span class="rotate-hint-icon">📱</span>
+      <span>Rotera enheten för bättre karta</span>
+      <button class="rotate-hint-close" onclick="dismissRotateHint()" aria-label="Stäng tips">✕</button>
+    </div>
   </div>
 </div>
 
@@ -830,12 +876,38 @@
     doc.head.appendChild(style);
   }
 
+  /* ── Rotationstips ── */
+  var rotateHintDismissed = false;
+
+  function updateRotateHint() {
+    var hint = document.getElementById('rotateHint');
+    if (!hint) return;
+    var isOpen     = document.getElementById('mapFullscreen').classList.contains('open');
+    var isPortrait = window.matchMedia('(orientation: portrait)').matches;
+    var isTouch    = window.matchMedia('(hover: none)').matches;
+    if (isOpen && isPortrait && isTouch && !rotateHintDismissed) {
+      hint.classList.remove('hidden');
+    } else {
+      hint.classList.add('hidden');
+    }
+  }
+
+  function dismissRotateHint() {
+    rotateHintDismissed = true;
+    document.getElementById('rotateHint').classList.add('hidden');
+  }
+
+  window.addEventListener('orientationchange', updateRotateHint, { passive: true });
+  window.matchMedia('(orientation: portrait)').addEventListener('change', updateRotateHint);
+
   /* ── Helskärms-overlay ── */
   function openMapFullscreen() {
     var overlay = document.getElementById('mapFullscreen');
     var body    = document.getElementById('mapFullscreenBody');
     overlay.classList.add('open');
     document.documentElement.style.overflow = 'hidden';
+    // Visa rotationstips efter kort fördröjning (kartan hinner laddas)
+    setTimeout(updateRotateHint, 800);
 
     if (!body.querySelector('iframe')) {
       var iframe = document.createElement('iframe');
@@ -856,6 +928,10 @@
   function closeMapFullscreen() {
     document.getElementById('mapFullscreen').classList.remove('open');
     document.documentElement.style.overflow = '';
+    // Återställ rotationstips (om ej avvisat) inför nästa öppning
+    if (!rotateHintDismissed) {
+      document.getElementById('rotateHint').classList.add('hidden');
+    }
   }
 
   /* Stäng med Escape-tangent */
