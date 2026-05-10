@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Ett Steg I Taget//Aktivitetskalender//SV
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Ett Steg I Taget – Aktiviteter
+X-WR-TIMEZONE:Europe/Stockholm
+X-WR-CALDESC:Kommande aktiviteter och event från ideella föreningen Ett Steg I Taget vid Wiredaholm. Datum uppdateras löpande.
+BEGIN:VEVENT
+UID:golf-sommaren-2026@ettstegitaget.se
+SUMMARY:Golftävling för psykisk hälsa – Ett Steg I Taget
+DESCRIPTION:Välgörenhetsgolf vid Wiredaholm Golf & Konferens. Intäkterna går till föreningen och organisationerna längs promenadslingan. Exakt datum meddelas snart – prenumerera på kalendern för att få uppdateringar automatiskt.
+LOCATION:Wiredaholm Golf & Konferens\, Hestra
+DTSTART;VALUE=DATE:20260701
+DTEND;VALUE=DATE:20260702
+STATUS:TENTATIVE
+URL:https://ettstegitaget.se/#aktiviteter
+END:VEVENT
+BEGIN:VEVENT
+UID:lopp-hosten-2026@ettstegitaget.se
+SUMMARY:Lopp för Ett Steg I Taget
+DESCRIPTION:Spring för psykisk hälsa – runt sjön och längs promenadslingan\, i din takt. Alla nivåer välkomna. Exakt datum meddelas snart.
+LOCATION:Wiredaholm\, Hestra
+DTSTART;VALUE=DATE:20260901
+DTEND;VALUE=DATE:20260902
+STATUS:TENTATIVE
+URL:https://ettstegitaget.se/#aktiviteter
+END:VEVENT
+END:VCALENDAR
