@@ -419,7 +419,7 @@
       display: flex; align-items: center;
     }
     .org-logo img {
-      max-height: 40px; max-width: 160px;
+      max-height: 40px; max-width: 200px;
       width: auto; height: auto; object-fit: contain;
       display: block;
     }
@@ -675,16 +675,18 @@
       .nav-links, .nav-wiredaholm { display: none; }
       .hamburger { display: flex; }
       .hero        { min-height: auto; }
-      .hero-content { grid-template-columns: 1fr; gap: 48px; padding-block: 64px 48px; }
+      .hero-content { grid-template-columns: 1fr; gap: 24px; padding-block: 48px 40px; }
       .hero-visual  { display: none; }
+      .scroll-indicator { display: none; }
       .about-grid   { grid-template-columns: 1fr; gap: 40px; }
       .trail-steps  { grid-template-columns: 1fr; gap: 8px; }
       .trail-info-grid { grid-template-columns: 1fr; }
       .trail-map-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
       .trail-map-grid > a { order: -1; }
-      .stats-grid   { grid-template-columns: 1fr; }
-      .stat         { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
-      .stat:last-child { border-bottom: none; }
+      .stats-grid   { grid-template-columns: 1fr 1fr; }
+      .stat         { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); padding: 20px 16px; }
+      .stat:nth-child(odd) { border-right: 1px solid rgba(255,255,255,.1); }
+      .stat:last-child { grid-column: 1 / -1; border-bottom: none; }
       .events-header { flex-direction: column; align-items: flex-start; }
       .footer-grid  { grid-template-columns: 1fr 1fr; }
       .footer-brand { grid-column: 1 / -1; }
@@ -1166,6 +1168,9 @@
         <div class="cs-icon">🗓️</div>
         <h3>Fler aktiviteter planeras</h3>
         <p>Mer är på gång. Prenumerera på kalendern så missar du ingenting.</p>
+        <a href="webcal://ettstegitaget.se/kalender.ics" class="event-card-btn" style="margin-top:20px; text-decoration:none;">
+          Prenumerera på kalender →
+        </a>
       </div>
     </div>
 
@@ -1204,7 +1209,7 @@
     </div>
 
     <div class="sponsors-grid">
-      <a href="https://wiredaholm.se/" target="_blank" rel="noopener" class="sponsor-card reveal">
+      <a href="https://wiredaholm.se/" target="_blank" rel="noopener" class="sponsor-card reveal" style="background:var(--green-50);">
         <img src="logos/sponsor-wiredaholm.png" alt="Wiredaholm Golf & Konferens" />
       </a>
       <a href="https://www.tmgolf.se/" target="_blank" rel="noopener" class="sponsor-card reveal reveal-delay-1" style="background:#1b3a2f;">
@@ -1260,7 +1265,7 @@
         <a href="#om-oss">Om oss</a>
         <a href="#aktiviteter">Aktiviteter</a>
         <a href="#sponsorer">Sponsorer</a>
-        <a href="mailto:info@ettstegitaget.se">Kontakt</a>
+        <a href="#" onclick="event.preventDefault();openMailto('kontakt')">Kontakt</a>
       </div>
 
       <div class="footer-col">
@@ -1281,7 +1286,7 @@
 
     <div class="footer-bottom">
       <p>© 2026 Ett Steg I Taget. Ideell förening.</p>
-      <p class="org-nr">Org.nr: [XXXXXX-XXXX]</p>
+      <p class="org-nr">Org.nr: [fylls i]</p>
       <p style="max-width:none;">Mår du dåligt just nu? Ring <strong style="color:rgba(255,255,255,.6);">90101</strong> (Självmordslinjen, dygnet runt)</p>
     </div>
   </div>
@@ -1367,6 +1372,14 @@
         'Vi är intresserade av att vår organisation ska vara en del av Ett Steg I Taget.\n\n' +
         'Organisation:\n' +
         'Kontaktperson:\n' +
+        'Telefon:\n' +
+        'Meddelande:\n';
+    } else if (typ === 'kontakt') {
+      amne = 'Kontakt – Ett Steg I Taget';
+      body =
+        'Hej!\n\n' +
+        'Jag vill komma i kontakt med Er angående:\n\n' +
+        'Namn:\n' +
         'Telefon:\n' +
         'Meddelande:\n';
     }
