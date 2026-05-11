@@ -206,10 +206,12 @@
       width: 600px; height: 600px; border-radius: 50%;
       background: radial-gradient(circle, var(--green-100) 0%, transparent 70%);
       top: -200px; right: -200px; pointer-events: none;
+      z-index: 0;
     }
     .hero-content {
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
       align-items: center; padding-block: 80px;
+      position: relative; z-index: 1;
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -268,6 +270,7 @@
       display: flex; flex-direction: column; align-items: center; gap: 8px;
       font-size: .72rem; color: var(--gray-400); letter-spacing: .08em; text-transform: uppercase;
       animation: bounce 2s infinite;
+      z-index: 1;
     }
     .scroll-indicator svg { color: var(--green-300); }
     @keyframes bounce {
@@ -451,26 +454,32 @@
       margin-bottom: 48px; gap: 24px; flex-wrap: wrap;
     }
     .events-header p { color: rgba(255,255,255,.7); }
-    .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+    .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; max-width: 860px; }
     .event-card {
       background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
       border-radius: var(--radius-md); padding: 28px;
+      display: flex; flex-direction: column;
       transition: var(--transition);
     }
     .event-card:hover {
       background: rgba(255,255,255,.10); transform: translateY(-2px);
       box-shadow: 0 8px 32px rgba(0,0,0,.3);
     }
+    .event-card-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 16px; margin-bottom: 20px;
+    }
+    .event-card-top .event-badge { margin-bottom: 0; flex-shrink: 0; }
     .event-date {
       display: inline-flex; flex-direction: column; align-items: center;
       background: var(--green-700); border-radius: var(--radius-sm);
-      padding: 8px 16px; margin-bottom: 20px;
-      font-size: .72rem; font-weight: 600; letter-spacing: .06em;
+      padding: 8px 14px; flex-shrink: 0;
+      font-size: .68rem; font-weight: 600; letter-spacing: .06em;
       text-transform: uppercase; color: var(--green-100);
     }
-    .event-date strong { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--white); line-height: 1; }
+    .event-date strong { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--white); line-height: 1; }
     .event-card h3 { color: var(--white); margin-bottom: 10px; font-size: 1.05rem; }
-    .event-card p  { color: rgba(255,255,255,.65); font-size: .85rem; max-width: none; margin-bottom: 20px; }
+    .event-card p  { color: rgba(255,255,255,.65); font-size: .85rem; max-width: none; margin-bottom: 20px; flex: 1; }
     .event-meta {
       display: flex; gap: 16px; flex-wrap: wrap;
       font-size: .75rem; color: rgba(255,255,255,.5);
@@ -479,6 +488,7 @@
     .event-coming-soon {
       border: 1.5px dashed rgba(255,255,255,.2); border-radius: var(--radius-md);
       padding: 40px 28px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
     }
     .event-coming-soon .cs-icon { font-size: 2.5rem; margin-bottom: 16px; }
     .event-coming-soon h3 { color: rgba(255,255,255,.8); margin-bottom: 8px; font-size: 1rem; }
@@ -929,7 +939,7 @@
     <div class="trail-map-grid reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; margin-bottom:48px;">
       <!-- Karta-förhandsvisning -->
       <a href="promenad.html" style="display:block; border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-lg); transition:transform .3s ease, box-shadow .3s ease;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 28px 72px rgba(27,67,50,.22)'" onmouseout="this.style.transform='';this.style.boxShadow='var(--shadow-lg)'">
-        <img src="karta.svg" alt="Karta över promenadslingan runt Viredaholmssjön med 8 stopp" style="width:100%; height:auto; display:block;" loading="lazy" />
+        <img src="Promenadslingan-vireda.webp" alt="Karta över promenadslingan runt Viredaholmssjön med 12 stopp" style="width:100%; height:auto; display:block;" loading="lazy" />
       </a>
 
       <!-- Info -->
@@ -952,7 +962,7 @@
           <div style="display:flex; gap:14px; align-items:flex-start;">
             <div class="value-icon">🎯</div>
             <div class="value-text">
-              <h4>8 stopp – 8 perspektiv</h4>
+              <h4>12 stopp – 12 perspektiv</h4>
               <p>Åtta organisationer visar hur mångfaldig hjälpen faktiskt är att nå.</p>
             </div>
           </div>
@@ -1122,53 +1132,37 @@
     <div class="events-header reveal">
       <div>
         <span class="eyebrow">Aktiviteter &amp; Event</span>
-        <h2>Aktiviteterna är på gång</h2>
-        <p>Vi håller just nu på att planera årets aktiviteter. Prenumerera på vår kalender så får du datum och detaljer direkt i din kalenderapp när vi är redo.</p>
+        <h2>Vi jobbar i en otrolig takt</h2>
+        <p>Promenadslingan tar form och vi längtar efter att få välkomna er ut i naturen. Håll utkik – datum för invigningen annonseras så snart det är klart.</p>
       </div>
     </div>
 
     <div class="events-grid">
       <div class="event-card reveal">
-        <span class="event-badge">Planeras – sommar 2026</span>
-        <div class="event-date">
-          <span>2026</span>
-          <strong>TBD</strong>
-          <span>Sommar</span>
+        <div class="event-card-top">
+          <span class="event-badge">Planeras – höst 2026</span>
+          <div class="event-date">
+            <span>2026</span>
+            <strong>TBD</strong>
+            <span>Höst</span>
+          </div>
         </div>
-        <h3>Golftävling för psykisk hälsa</h3>
-        <p>Välgörenhetsgolf vid Wiredaholm. Intäkterna går till föreningen och organisationerna längs slingan.</p>
+        <h3>Invigning av Promenadslingan</h3>
+        <p>Vi jobbar hårt och i en otrolig takt för att färdigställa promenadslingan vid Viredaholmssjön. Snart är det dags att inviga vårt fina promenadstråk – med organisationernas skyltar på plats och naturen som fond.</p>
         <div class="event-meta">
-          <span>⛳ Wiredaholm</span>
+          <span>📍 Viredaholm 1, Aneby</span>
           <span>👥 Öppen för alla</span>
         </div>
-        <button class="event-card-btn" onclick="document.getElementById('modal-golf').showModal()">
-          Läs mer &amp; anmäl intresse →
+        <button class="event-card-btn" onclick="document.getElementById('modal-invigning').showModal()">
+          Läs mer &amp; håll utkik →
         </button>
       </div>
 
-      <div class="event-card reveal reveal-delay-1">
-        <span class="event-badge">Planeras – höst 2026</span>
-        <div class="event-date">
-          <span>2026</span>
-          <strong>TBD</strong>
-          <span>Höst</span>
-        </div>
-        <h3>Lopp för Ett Steg I Taget</h3>
-        <p>Spring för psykisk hälsa – runt sjön och längs slingan, i din takt. Alla nivåer välkomna.</p>
-        <div class="event-meta">
-          <span>🏃 Wiredaholm</span>
-          <span>👥 Alla nivåer</span>
-        </div>
-        <button class="event-card-btn" onclick="document.getElementById('modal-lopp').showModal()">
-          Läs mer &amp; anmäl intresse →
-        </button>
-      </div>
-
-      <div class="event-coming-soon reveal reveal-delay-2">
+      <div class="event-coming-soon reveal reveal-delay-1">
         <div class="cs-icon">🗓️</div>
         <h3>Fler aktiviteter planeras</h3>
-        <p>Mer är på gång. Prenumerera på kalendern så missar du ingenting.</p>
-        <a href="webcal://ettstegitaget.se/kalender.ics" class="event-card-btn" style="margin-top:20px; text-decoration:none;">
+        <p>Mer är på gång. Prenumerera på kalendern så missar du ingenting när datum spikas.</p>
+        <a href="webcal://ettstegitaget.se/kalender.ics" class="event-card-btn" style="text-decoration:none;">
           Prenumerera på kalender →
         </a>
       </div>
@@ -1178,7 +1172,7 @@
     <div class="cal-subscribe reveal">
       <div class="cal-subscribe-text">
         <h3>Prenumerera på aktivitetskalendern</h3>
-        <p>Lägg till vår kalender direkt i Apple Kalender, Google Calendar eller Outlook. Så fort vi spikar datum och detaljer dyker de upp automatiskt hos dig.</p>
+        <p>Lägg till vår kalender direkt i Apple Kalender, Google Calendar eller Outlook. Så fort vi spikar datum dyker det upp automatiskt hos dig.</p>
       </div>
       <div class="cal-btns">
         <a href="webcal://ettstegitaget.se/kalender.ics" class="cal-btn cal-btn-primary">
@@ -1286,7 +1280,7 @@
 
     <div class="footer-bottom">
       <p>© 2026 Ett Steg I Taget. Ideell förening.</p>
-      <p class="org-nr">Org.nr: [fylls i]</p>
+      <p class="org-nr">Org.nr: 802554-9604</p>
       <p style="max-width:none;">Mår du dåligt just nu? Ring <strong style="color:rgba(255,255,255,.6);">90101</strong> (Självmordslinjen, dygnet runt)</p>
     </div>
   </div>
@@ -1295,48 +1289,25 @@
 
 <!-- ═══════════════ EVENT MODALER ═══════════════ -->
 
-<!-- Golf -->
-<dialog class="event-modal" id="modal-golf" aria-labelledby="modal-golf-title">
+<!-- Invigning -->
+<dialog class="event-modal" id="modal-invigning" aria-labelledby="modal-invigning-title">
   <button class="modal-close" onclick="this.closest('dialog').close()" aria-label="Stäng">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
   </button>
-  <div class="modal-hero-placeholder">⛳</div>
-  <div class="modal-body">
-    <span class="event-badge">Planeras – sommar 2026</span>
-    <h2 id="modal-golf-title">Golftävling för psykisk hälsa</h2>
-    <div class="modal-meta">
-      <span>📍 Wiredaholm Golf &amp; Konferens</span>
-      <span>📅 Sommar 2026 – datum meddelas</span>
-      <span>👥 Öppen för alla</span>
-    </div>
-    <p class="modal-desc">En välgörenhetsgolftävling i vackra omgivningar vid Wiredaholm. Alla intäkter går direkt till föreningen och organisationerna längs promenadslingan – som arbetar för att ingen ska behöva bära sin psykiska ohälsa ensam.<br><br>Exakt datum och anmälningsdetaljer presenteras snart. Anmäl ditt intresse redan nu så hör vi av oss när det är klart.</p>
-    <hr class="modal-divider" />
-    <p class="modal-cta-label">Anmäl intresse</p>
-    <button class="btn btn-primary modal-cta-btn" onclick="openMailto('aktivitet','Golftävling för psykisk hälsa')">
-      Skicka intresseanmälan →
-    </button>
-  </div>
-</dialog>
-
-<!-- Lopp -->
-<dialog class="event-modal" id="modal-lopp" aria-labelledby="modal-lopp-title">
-  <button class="modal-close" onclick="this.closest('dialog').close()" aria-label="Stäng">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-  </button>
-  <div class="modal-hero-placeholder">🏃</div>
+  <div class="modal-hero-placeholder">🎉</div>
   <div class="modal-body">
     <span class="event-badge">Planeras – höst 2026</span>
-    <h2 id="modal-lopp-title">Lopp för Ett Steg I Taget</h2>
+    <h2 id="modal-invigning-title">Invigning av Promenadslingan</h2>
     <div class="modal-meta">
-      <span>📍 Wiredaholm, Hestra</span>
-      <span>📅 Höst 2026 – datum meddelas</span>
-      <span>👥 Alla nivåer välkomna</span>
+      <span>📍 Viredaholm 1, Aneby</span>
+      <span>📅 Höst 2026 – datum meddelas snart</span>
+      <span>👥 Öppen för alla</span>
     </div>
-    <p class="modal-desc">Spring för psykisk hälsa – runt Viredaholmssjön och längs promenadslingan, i din egen takt. Oavsett om du springer din första kilometer eller är van motionär är du välkommen.<br><br>Längs banan finns skyltar från organisationerna som arbetar med psykisk hälsa. Exakt datum och mer info kommer snart – anmäl intresse nu så kontaktar vi dig.</p>
+    <p class="modal-desc">Vi jobbar i en otrolig takt och är otroligt stolta över det vi håller på att bygga upp. Promenadslingan vid Viredaholmssjön är snart redo att välkomna sina första besökare – med skyltar från tolv organisationer som arbetar för psykisk hälsa, vacker natur och en stig som bjuder in till reflektion och rörelse.<br><br>Invigningen planeras till hösten 2026. Exakt datum och program annonseras så snart det är klart – prenumerera på vår kalender så missar du ingenting.</p>
     <hr class="modal-divider" />
-    <p class="modal-cta-label">Anmäl intresse</p>
-    <button class="btn btn-primary modal-cta-btn" onclick="openMailto('aktivitet','Lopp för Ett Steg I Taget')">
-      Skicka intresseanmälan →
+    <p class="modal-cta-label">Håll dig uppdaterad</p>
+    <button class="btn btn-primary modal-cta-btn" onclick="openMailto('aktivitet','Invigning av Promenadslingan')">
+      Meddela mig när datum är klart →
     </button>
   </div>
 </dialog>
