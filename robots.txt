@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ettstegitaget.se/sitemap.xml
+Sitemap: https://ettstegitaget.info/sitemap.xml

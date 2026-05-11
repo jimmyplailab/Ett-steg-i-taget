@@ -7,13 +7,13 @@ X-WR-CALNAME:Ett Steg I Taget – Aktiviteter
 X-WR-TIMEZONE:Europe/Stockholm
 X-WR-CALDESC:Kommande aktiviteter och event från ideella föreningen Ett Steg I Taget vid Viredaholm. Datum uppdateras löpande.
 BEGIN:VEVENT
-UID:invigning-promenadslingan-2026@ettstegitaget.se
+UID:invigning-promenadslingan-2026@ettstegitaget.info
 SUMMARY:Invigning av Promenadslingan – Ett Steg I Taget
 DESCRIPTION:Vi längtar efter att få välkomna er till invigningen av promenadslingan vid Viredaholmssjön! Tolv organisationer som arbetar med psykisk hälsa finns representerade längs slingan. Exakt datum meddelas snart – prenumerera på kalendern för att få uppdateringar automatiskt.
 LOCATION:Viredaholm 1\, 578 92 Aneby
 DTSTART;VALUE=DATE:20261001
 DTEND;VALUE=DATE:20261002
 STATUS:TENTATIVE
-URL:https://ettstegitaget.se/#aktiviteter
+URL:https://ettstegitaget.info/#aktiviteter
 END:VEVENT
 END:VCALENDAR
