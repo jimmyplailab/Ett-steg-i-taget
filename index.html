@@ -454,26 +454,32 @@
       margin-bottom: 48px; gap: 24px; flex-wrap: wrap;
     }
     .events-header p { color: rgba(255,255,255,.7); }
-    .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+    .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; max-width: 860px; }
     .event-card {
       background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
       border-radius: var(--radius-md); padding: 28px;
+      display: flex; flex-direction: column;
       transition: var(--transition);
     }
     .event-card:hover {
       background: rgba(255,255,255,.10); transform: translateY(-2px);
       box-shadow: 0 8px 32px rgba(0,0,0,.3);
     }
+    .event-card-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 16px; margin-bottom: 20px;
+    }
+    .event-card-top .event-badge { margin-bottom: 0; flex-shrink: 0; }
     .event-date {
       display: inline-flex; flex-direction: column; align-items: center;
       background: var(--green-700); border-radius: var(--radius-sm);
-      padding: 8px 16px; margin-bottom: 20px;
-      font-size: .72rem; font-weight: 600; letter-spacing: .06em;
+      padding: 8px 14px; flex-shrink: 0;
+      font-size: .68rem; font-weight: 600; letter-spacing: .06em;
       text-transform: uppercase; color: var(--green-100);
     }
-    .event-date strong { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--white); line-height: 1; }
+    .event-date strong { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--white); line-height: 1; }
     .event-card h3 { color: var(--white); margin-bottom: 10px; font-size: 1.05rem; }
-    .event-card p  { color: rgba(255,255,255,.65); font-size: .85rem; max-width: none; margin-bottom: 20px; }
+    .event-card p  { color: rgba(255,255,255,.65); font-size: .85rem; max-width: none; margin-bottom: 20px; flex: 1; }
     .event-meta {
       display: flex; gap: 16px; flex-wrap: wrap;
       font-size: .75rem; color: rgba(255,255,255,.5);
@@ -482,6 +488,7 @@
     .event-coming-soon {
       border: 1.5px dashed rgba(255,255,255,.2); border-radius: var(--radius-md);
       padding: 40px 28px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
     }
     .event-coming-soon .cs-icon { font-size: 2.5rem; margin-bottom: 16px; }
     .event-coming-soon h3 { color: rgba(255,255,255,.8); margin-bottom: 8px; font-size: 1rem; }
@@ -1130,16 +1137,18 @@
       </div>
     </div>
 
-    <div class="events-grid" style="grid-template-columns: 1fr;">
-      <div class="event-card reveal" style="max-width:560px;">
-        <span class="event-badge">Planeras – höst 2026</span>
-        <div class="event-date">
-          <span>2026</span>
-          <strong>TBD</strong>
-          <span>Höst</span>
+    <div class="events-grid">
+      <div class="event-card reveal">
+        <div class="event-card-top">
+          <span class="event-badge">Planeras – höst 2026</span>
+          <div class="event-date">
+            <span>2026</span>
+            <strong>TBD</strong>
+            <span>Höst</span>
+          </div>
         </div>
         <h3>Invigning av Promenadslingan</h3>
-        <p>Vi jobbar hårt och i en otrolig takt för att färdigställa promenadslingan vid Viredaholmssjön. Snart är det dags att inviga vårt fina promenadstråk – med organisationernas skyltar på plats och naturen som fond. Exakt datum meddelas längre fram, men hösten 2026 är målet.</p>
+        <p>Vi jobbar hårt och i en otrolig takt för att färdigställa promenadslingan vid Viredaholmssjön. Snart är det dags att inviga vårt fina promenadstråk – med organisationernas skyltar på plats och naturen som fond.</p>
         <div class="event-meta">
           <span>📍 Viredaholm 1, Aneby</span>
           <span>👥 Öppen för alla</span>
@@ -1147,6 +1156,15 @@
         <button class="event-card-btn" onclick="document.getElementById('modal-invigning').showModal()">
           Läs mer &amp; håll utkik →
         </button>
+      </div>
+
+      <div class="event-coming-soon reveal reveal-delay-1">
+        <div class="cs-icon">🗓️</div>
+        <h3>Fler aktiviteter planeras</h3>
+        <p>Mer är på gång. Prenumerera på kalendern så missar du ingenting när datum spikas.</p>
+        <a href="webcal://ettstegitaget.se/kalender.ics" class="event-card-btn" style="text-decoration:none;">
+          Prenumerera på kalender →
+        </a>
       </div>
     </div>
 
